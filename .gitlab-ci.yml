@@ -8,5 +8,5 @@ publish-npm:
   script:
     - npm config set //gitlab.nekosyndicate.com/api/v4/packages/npm/:_authToken=${CI_JOB_TOKEN}
     - npm config set @scope:registry https://gitlab.nekosyndicate.com/api/v4/packages/npm/
-      npm config set registry https://gitlab.nekosyndicate.com
+    - npm config set registry https://gitlab.nekosyndicate.com
     - npm publish
