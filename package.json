@@ -4,6 +4,9 @@
   "description": "Create a hash from an image",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "publishConfig": {
+    "@danielb:registry": "https://gitlab.nekosyndicate/api/v4/projects/35/packages/npm/"
+  },
   "scripts": {
     "test": "npx mocha -r ts-node/register __tests__/*.test.ts ",
     "build": "tsc",
