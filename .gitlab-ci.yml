@@ -8,4 +8,5 @@ publish-npm:
   script:
     - echo "@nekosyndicate:registry=https://registry.nekosyndicate.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/" > .npmrc
     - echo "//registry.nekosyndicate.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" >> .npmrc
+    - cat .npmrc
     - npm publish
