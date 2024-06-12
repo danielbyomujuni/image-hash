@@ -113,7 +113,7 @@ export const imageHash = (oldSrc: string | UrlRequestObject | BufferObject, bits
         if (type.mime === 'image/png') {
           processPNG(data, bits, method, cb);
         } else if (type.mime === 'image/jpeg') {
-          processJPG(data, bits, method, cb);
+          processJPG(data, bits, method, cb, memory_limit_mb);
         } else if (type.mime === 'image/webp') {
           processWebp(data, bits, method, cb);
         } else {
