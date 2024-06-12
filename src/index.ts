@@ -29,9 +29,9 @@ const processPNG = (data, bits, method, cb) => {
   }
 };
 
-const processJPG = (data, bits, method, cb) => {
+const processJPG = (data, bits, method, cb, memory_limit_mb) => {
   try {
-    const decoded = jpeg.decode(data);
+    const decoded = jpeg.decode(data, {maxMemoryUsageInMB: memory_limit_mb});
     const res = blockhash(decoded, bits, method ? 2 : 1);
     cb(null, res);
   } catch (e) {
@@ -60,8 +60,16 @@ const isBufferObject = (obj: UrlRequestObject | BufferObject): obj is BufferObje
     || (Buffer.isBuffer(casted.data) && (casted.ext && casted.ext.length > 0));
 };
 
+
+export const imageHashPromise = (oldSrc: string | UrlRequestObject | BufferObject, bits, method, memory_limit_mb: number, cb) => {
+  imageHash(oldSrc, bits, method, memory_limit_mb, (result) => {
+    Promise.resolve(result)
+  })
+}
+
+
 // eslint-disable-next-line
-export const imageHash = (oldSrc: string | UrlRequestObject | BufferObject, bits, method, cb) => {
+export const imageHash = (oldSrc: string | UrlRequestObject | BufferObject, bits, method, memory_limit_mb: number, cb) => {
   const src = oldSrc;
 
   const getFileType = async (data: Buffer | string) => {
@@ -94,7 +102,7 @@ export const imageHash = (oldSrc: string | UrlRequestObject | BufferObject, bits
         if (ext === 'png' && type.mime === 'image/png') {
           processPNG(data, bits, method, cb);
         } else if ((ext === 'jpg' || ext === 'jpeg') && type.mime === 'image/jpeg') {
-          processJPG(data, bits, method, cb);
+          processJPG(data, bits, method, cb, memory_limit_mb);
         } else if (ext === 'webp' && type.mime === 'image/webp') {
           processWebp(data, bits, method, cb);
         } else {
