@@ -6,7 +6,8 @@ stages:
 publish-npm:
   stage: deploy
   script:
-    - echo "@danielb:registry=https://gitlab..nekosyndicate.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/" > .npmrc
-    - echo "//gitlab..nekosyndicate.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" >> .npmrc
+    - echo "@danielb:registry=https://gitlab.nekosyndicate.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/" > .npmrc
+    - echo "//gitlab.nekosyndicate.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" >> .npmrc
+    - npm config set registry https://registry.nekosyndicate.com
     - cat .npmrc
     - npm publish
