@@ -1,5 +1,5 @@
 {
-  "name": "image-hash",
+  "name": "@danielb/image-hash",
   "version": "5.3.1",
   "description": "Create a hash from an image",
   "main": "lib/index.js",
