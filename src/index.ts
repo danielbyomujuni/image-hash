@@ -61,7 +61,7 @@ const isBufferObject = (obj: UrlRequestObject | BufferObject): obj is BufferObje
 };
 
 
-export const imageHashPromise = (oldSrc: string | UrlRequestObject | BufferObject, bits, method, memory_limit_mb: number, cb) => {
+export const imageHashPromise = (oldSrc: string | UrlRequestObject | BufferObject, bits, method, memory_limit_mb: number) => {
   imageHash(oldSrc, bits, method, memory_limit_mb, (result) => {
     Promise.resolve(result)
   })
